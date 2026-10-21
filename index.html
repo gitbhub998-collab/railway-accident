@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101113">
+    <meta name="description" content="Test your knowledge of railway accidents, disasters, and emergency response.">
+    <title>Railway Accidents &amp; Disaster Readiness</title>
+    <link rel="icon" href="Logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <a class="brand" href="#" aria-label="Railway Accidents and Disaster">
+            <img class="brand-logo" src="Logo.jpg" alt="Railway Accidents and Disaster">
+        </a>
+    </header>
+
+    <main class="viewport">
+        <div class="assessment-container">
+            <div class="bebo-wrapper">
+                <div class="bebo-bubble" id="bebo-bubble">مرحبا اسمي بيبو جاهز لبدء الاختبار؟</div>
+                <div class="bebo-robot" id="bebo-robot">
+                    <div class="eyes-container">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz-ui">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="meta-info"><span class="meta-label">KNOWLEDGE CHECK</span><span class="question-count">QUESTION <span id="current-idx">01</span><span class="count-divider">/</span><span id="total-idx">00</span></span></div>
+                        <button class="hint-toggle" onclick="toggleHint()" title="Reveal Intel">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="hint-display" id="hint-panel">
+                        <div id="hint-text"></div>
+                    </div>
+
+                    <div class="question-body" id="question-text"></div>
+
+                    <div id="options-container" class="options-grid"></div>
+
+                    <div class="footer-nav">
+                        <div class="nav-actions-right">
+                            <button class="btn-nav" id="btn-prev" onclick="move(-1)">BACK</button>
+                            <button class="btn-nav" id="btn-skip" onclick="move(1)">SKIP</button>
+                            <button class="btn-primary" id="btn-next" onclick="move(1)" disabled>NEXT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="results-ui" class="hidden">
+                <div class="card results-view">
+                    <div class="meta-info">ASSESSMENT COMPLETE</div>
+                    <div class="final-pct" id="final-pct">0%</div>
+                    <div class="feedback-container" id="final-feedback">...</div>
+                    <button class="btn-primary btn-full" id="results-action">RESTART ASSESSMENT</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer><span class="developer-name">Bilal Mohamed</span></footer>
+
+    <!-- ضع ملفات الصوت هنا: audio/fail.mp3 و audio/success.mp3 -->
+    <audio id="audio-fail" preload="auto">
+        <source src="audio/fail.mp3" type="audio/mpeg">
+        <source src="audio/fail.wav" type="audio/wav">
+    </audio>
+    <audio id="audio-success" preload="auto">
+        <source src="audio/success.mp3" type="audio/mpeg">
+        <source src="audio/success.wav" type="audio/wav">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
