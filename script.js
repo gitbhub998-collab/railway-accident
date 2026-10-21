@@ -5,6 +5,9 @@ function normalizeQuizData(items) {
         if (!normalized.arabicQuestion) {
             normalized.arabicQuestion = normalized.translation || '';
         }
+        if (typeof normalized.question === 'string') {
+            normalized.question = normalized.question.replace(/^\s*\d+[.)]\s*/, '');
+        }
         if (!normalized.arabicOptions) {
             normalized.arabicOptions = {};
         }
@@ -74,6 +77,43 @@ function normalizeQuizData(items) {
         if (!normalized.arabicHint) normalized.arabicHint = normalized.hintAR || '';
 
         return normalized;
+    });
+}
+
+function shuffle(items) {
+    const shuffled = [...items];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+function shuffleQuiz(items) {
+    return shuffle(items).map(item => {
+        const options = shuffle(Object.entries(item.options));
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const shuffledOptions = {};
+        const shuffledArabicOptions = {};
+        let correctAnswer = item.correctAnswer;
+
+        options.forEach(([oldKey, option], index) => {
+            const newKey = letters[index];
+            shuffledOptions[newKey] = option;
+            if (item.arabicOptions[oldKey]) {
+                shuffledArabicOptions[newKey] = item.arabicOptions[oldKey];
+            }
+            if (oldKey === item.correctAnswer) {
+                correctAnswer = newKey;
+            }
+        });
+
+        return {
+            ...item,
+            options: shuffledOptions,
+            arabicOptions: shuffledArabicOptions,
+            correctAnswer
+        };
     });
 }
 
@@ -250,7 +290,7 @@ const mcqQuestions = [
   }
 ];
 
-const quizDataMain = normalizeQuizData(mcqQuestions);
+const quizDataMain = shuffleQuiz(normalizeQuizData(mcqQuestions));
 const quizzes = [quizDataMain].filter(q => q.length > 0);
 let currentQuizIndex = 0;
 let quizData = quizzes[currentQuizIndex];
@@ -318,7 +358,7 @@ function render() {
     document.getElementById('current-idx').innerText = (index + 1).toString().padStart(2, '0');
 
     document.getElementById('question-text').innerHTML = `
-        <div class="q-en-main">${data.question}</div>
+        <div class="q-en-main">${index + 1}. ${data.question}</div>
         <div class="q-ar-box">${data.arabicQuestion}</div>
     `;
 
