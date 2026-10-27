@@ -4,6 +4,8 @@
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "style.css", "use": "@vercel/static" },
     { "src": "script.js", "use": "@vercel/static" },
+    { "src": "quiz-questions.js", "use": "@vercel/static" },
+    { "src": "quiz-questions-part2.js", "use": "@vercel/static" },
     { "src": "audio/*", "use": "@vercel/static" },
     { "src": "Logo.jpg", "use": "@vercel/static" }
   ]

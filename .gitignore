@@ -12,3 +12,5 @@ Desktop.ini
 # Logs and local dependencies
 *.log
 node_modules/
+.env
+.env.*
