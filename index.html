@@ -3,36 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#090804">
-    <meta name="description" content="Test your knowledge of signaling power supplies.">
-    <title>Signaling Power supplies</title>
-    <link rel="icon" href="Logo.jpg" type="image/jpeg">
+    <title>Railway accidents and disaster management</title>
+    <link rel="icon" href="assets/railway-disaster-logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <a class="brand" href="#" aria-label="Signaling Power supplies">
-            <img class="brand-logo" src="Logo.jpg" alt="Signaling Power supplies">
-        </a>
+        <img
+            class="brand-logo"
+            src="assets/railway-disaster-logo.png"
+            alt="Railway accidents and disaster management"
+            width="1536"
+            height="1024"
+        >
     </header>
 
     <main class="viewport">
         <div class="assessment-container">
-            <div class="bebo-wrapper">
-                <div class="bebo-bubble" id="bebo-bubble">مرحبا اسمي بيبو جاهز لبدء الاختبار؟</div>
-                <div class="bebo-robot" id="bebo-robot">
-                    <div class="eyes-container">
-                        <div class="eye"></div>
-                        <div class="eye"></div>
-                    </div>
-                </div>
-            </div>
 
             <div id="quiz-ui">
                 <div class="card">
                     <div class="card-header">
-                        <div class="meta-info"><span class="meta-label">KNOWLEDGE CHECK</span><span class="question-count">QUESTION <span id="current-idx">01</span><span class="count-divider">/</span><span id="total-idx">00</span></span></div>
+                        <div class="meta-info">Question <span id="current-idx">01</span> / <span id="total-idx">00</span></div>
                     </div>
 
                     <div class="question-body" id="question-text"></div>
@@ -49,28 +42,10 @@
                 </div>
             </div>
 
-            <div id="checkpoint-ui" class="hidden">
-                <div class="card checkpoint-view" aria-live="polite">
-                    <div class="meta-info">SECTION COMPLETE</div>
-                    <h2 id="checkpoint-title" class="checkpoint-title"></h2>
-                    <div id="checkpoint-score" class="checkpoint-score"></div>
-                    <div id="checkpoint-feedback" class="checkpoint-feedback"></div>
-                    <button class="btn-primary btn-full" id="checkpoint-next" onclick="continueAfterCheckpoint()">NEXT</button>
-                </div>
-            </div>
-
             <div id="results-ui" class="hidden">
                 <div class="card results-view">
-                    <div class="meta-info">ASSESSMENT COMPLETE</div>
-                    <div class="final-pct" id="final-pct">0%</div>
-                    <div class="final-score" id="final-score" dir="rtl" aria-label="0 إجابة صحيحة من 100 سؤال">
-                        <span class="score-label">الإجابات الصحيحة</span>
-                        <bdi class="score-fraction" dir="ltr">
-                            <span id="final-correct">0</span>
-                            <span class="score-divider" aria-hidden="true">/</span>
-                            <span id="final-total">100</span>
-                        </bdi>
-                    </div>
+                    <div class="meta-info">Complete Question</div>
+                    <div class="final-pct" id="final-pct" aria-label="Final score">0%</div>
                     <div class="feedback-container" id="final-feedback">...</div>
                     <button class="btn-primary btn-full" id="results-action">RESTART ASSESSMENT</button>
                 </div>
@@ -79,13 +54,21 @@
         </div>
     </main>
 
-    <footer><span class="developer-name">Bilal Mohamed</span></footer>
+    <footer>
+        <span class="developer-signature">Developer By Bilal Mohamed</span>
+    </footer>
 
-    <audio id="checkpoint-audio" preload="none"></audio>
-    <audio id="results-audio" preload="none"></audio>
 
-    <script src="quiz-questions.js"></script>
-    <script src="quiz-questions-part2.js"></script>
+    <!-- ضع ملفات الصوت هنا: audio/fail.mp3 و audio/success.mp3 -->
+    <audio id="audio-fail" preload="auto">
+        <source src="audio/fail.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audio-success" preload="auto">
+        <source src="audio/success.mp3" type="audio/mpeg">
+        <source src="audio/success.wav" type="audio/wav">
+    </audio>
+
+    <script src="quiz-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
